@@ -1,0 +1,78 @@
+<div *ngIf="order">
+  <div class="modal-header">
+    <h4 class="modal-title" jhiTranslate="calendar.order.title" [translateValues]="{ id: order.orderNum }">
+      Viewing Order #{{ order.orderNum }} Summary
+    </h4>
+    <button aria-label="Exit" type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></button>
+  </div>
+
+  <div class="modal-body">
+    <jhi-alert-error></jhi-alert-error>
+
+    <div class="modal-body">
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="calendar.order-entity.description" for="field_description">Description</label>
+        <input
+          aria-label="Order description"
+          type="text"
+          class="form-control"
+          name="description"
+          id="field_description"
+          [ngModel]="order.orderDescription"
+          [readonly]="true"
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="calendar.order-entity.customer" for="field_customer">Customer ID</label>
+        <input
+          aria-label="Customer ID"
+          type="text"
+          class="form-control"
+          name="customer_id"
+          id="field_customer"
+          data-cy="description"
+          [ngModel]="order.customerID"
+          [readonly]="true"
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="calendar.order-entity.orderDate" for="field_date_ordered">Date Ordered</label>
+        <input
+          id="field_date_ordered"
+          type="date"
+          class="form-control"
+          name="date_ordered"
+          placeholder="YYYY-MM-DD"
+          [ngModel]="dateOrdered"
+          [readonly]="true"
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="calendar.order-entity.dueDate" for="field_dueDate">Deadline</label>
+        <input type="date" class="form-control" name="dueDate" id="field_dueDate" [ngModel]="dueDate" [readonly]="true" />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="calendar.order-entity.price" for="field_price">Price</label>
+        <input
+          aria-label="Price"
+          id="field_price"
+          type="text"
+          class="form-control"
+          name="price"
+          [ngModel]="order.price"
+          [readonly]="true"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" id="view-order" class="btn btn-primary" (click)="redirectToOrder()">
+      <fa-icon icon="up-right-from-square"></fa-icon>&nbsp;<span jhiTranslate="calendar.order.redirect">View Order</span>
+    </button>
+  </div>
+</div>

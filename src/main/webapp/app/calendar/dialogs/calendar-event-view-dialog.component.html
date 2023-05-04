@@ -1,0 +1,250 @@
+<form
+  aria-label="Pop up form to view an event, tab through to view the different inputs."
+  *ngIf="calendarEvent"
+  name="editForm"
+  role="form"
+  novalidate
+  [formGroup]="editForm"
+  (ngSubmit)="save()"
+>
+  <div class="modal-header">
+    <h4
+      *ngIf="!isEditing"
+      class="modal-title"
+      data-cy="calendarEventViewDialogHeading"
+      jhiTranslate="teamprojectApp.calendarEvent.view.title"
+      [translateValues]="{ name: calendarEvent.name }"
+    >
+      Viewing Event: {{ calendarEvent.name }}
+    </h4>
+    <h4
+      *ngIf="isEditing"
+      class="modal-title"
+      data-cy="calendarEventViewDialogHeading"
+      jhiTranslate="teamprojectApp.calendarEvent.view.editTitle"
+      [translateValues]="{ name: calendarEvent.name }"
+    >
+      Editing Event: {{ calendarEvent.name }}
+    </h4>
+
+    <button aria-label="Exit" type="button" class="btn-close" data-dismiss="modal" (click)="cancel()"></button>
+  </div>
+
+  <div class="modal-body">
+    <jhi-alert-error></jhi-alert-error>
+
+    <div class="modal-body">
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.name" for="field_name">Name</label>
+        <input
+          aria-label="Event Name"
+          type="text"
+          class="form-control"
+          name="name"
+          id="field_name"
+          data-cy="name"
+          formControlName="name"
+          [readonly]="!isEditing"
+        />
+        <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.description" for="field_description">Description</label>
+        <input
+          aria-label="Event description"
+          type="text"
+          class="form-control"
+          name="description"
+          id="field_description"
+          data-cy="description"
+          formControlName="description"
+          [readonly]="!isEditing"
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.start" for="field_start">Start</label>
+        <div class="d-flex">
+          <input
+            aria-label="Event start date and time"
+            *ngIf="!allDay"
+            id="field_start"
+            data-cy="start"
+            type="datetime-local"
+            class="form-control"
+            name="start"
+            formControlName="start"
+            placeholder="YYYY-MM-DD HH:mm"
+            [readonly]="!isEditing"
+            (ngModelChange)="validateDateFields(true, false)"
+          />
+          <input
+            id="field_start_date"
+            type="date"
+            class="form-control"
+            *ngIf="allDay"
+            [(ngModel)]="allDayStartDate"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="updateAllDayStart()"
+            [readonly]="!isEditing"
+          />
+        </div>
+        <div *ngIf="editForm.get('start')!.invalid || !allDayDateValid">
+          <small class="form-text text-danger" *ngIf="editForm.get('start')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+          <small
+            class="form-text text-danger"
+            [hidden]="!editForm.get('start')?.errors?.datetimelocal"
+            jhiTranslate="entity.validation.datetimelocal"
+          >
+            This field should be a date and time.
+          </small>
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('start')?.errors?.dateInvalid || (allDay && !allDayDateValid)"
+            jhiTranslate="teamprojectApp.calendarEvent.validation.startDate"
+          >
+            The start date must be before the end date
+          </small>
+        </div>
+      </div>
+
+      <div id="allDay" class="mb-3">
+        <input
+          aria-label="All day event"
+          type="checkbox"
+          [(ngModel)]="allDay"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="toggleAllDay()"
+          [disabled]="!isEditing"
+        />
+        All-day event
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.end" for="field_end">End</label>
+        <div class="d-flex">
+          <input
+            aria-label="Event end date and time"
+            *ngIf="!allDay"
+            id="field_end"
+            data-cy="end"
+            type="datetime-local"
+            class="form-control"
+            name="end"
+            formControlName="end"
+            placeholder="YYYY-MM-DD HH:mm"
+            [readonly]="!isEditing"
+            (ngModelChange)="validateDateFields(false, true)"
+          />
+          <input
+            id="field_end_date"
+            type="date"
+            class="form-control"
+            *ngIf="allDay"
+            [(ngModel)]="allDayEndDate"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="updateAllDayEnd()"
+            [readonly]="!isEditing"
+          />
+        </div>
+        <div *ngIf="editForm.get('end')!.invalid || !allDayDateValid">
+          <small class="form-text text-danger" *ngIf="editForm.get('end')?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+          <small
+            class="form-text text-danger"
+            [hidden]="!editForm.get('end')?.errors?.datetimelocal"
+            jhiTranslate="entity.validation.datetimelocal"
+          >
+            This field should be a date and time.
+          </small>
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get('end')?.errors?.dateInvalid || (allDay && !allDayDateValid)"
+            jhiTranslate="teamprojectApp.calendarEvent.validation.endDate"
+          >
+            The end date must be after the start date
+          </small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.location" for="field_location">Location</label>
+        <input
+          aria-label="Event location"
+          type="text"
+          class="form-control"
+          name="location"
+          id="field_location"
+          data-cy="location"
+          formControlName="location"
+          [readonly]="!isEditing"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer justify-content-between">
+    <div style="justify-content: flex-start">
+      <button
+        aria-label="Delete"
+        *ngIf="isEditing"
+        type="button"
+        id="delete"
+        data-cy="entityDeleteButton"
+        class="btn btn-danger"
+        (click)="delete(calendarEvent)"
+      >
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+
+    <div style="justify-content: flex-end">
+      <button aria-label="Edit" *ngIf="!isEditing" type="button" id="edit" class="btn btn-primary" (click)="enableEditing()">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+
+      <button
+        aria-label="Exit without saving"
+        *ngIf="isEditing"
+        type="button"
+        id="cancel-save"
+        data-cy="entityCreateCancelButton"
+        class="btn btn-warning"
+        (click)="cancel()"
+      >
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="teamprojectApp.calendarEvent.view.exit">Exit without saving</span>
+      </button>
+
+      <button
+        aria-label="Undo changes"
+        *ngIf="isEditing"
+        type="button"
+        id="undo-edits"
+        class="btn btn-secondary"
+        (click)="disableEditing()"
+      >
+        <fa-icon icon="rotate-left"></fa-icon>&nbsp;<span jhiTranslate="teamprojectApp.calendarEvent.view.undoChanges">Undo changes</span>
+      </button>
+
+      <button
+        aria-label="Save"
+        *ngIf="isEditing"
+        type="submit"
+        id="save-entity"
+        data-cy="entityCreateSaveButton"
+        [disabled]="editForm.invalid || isSaving || (allDay && !allDayDateValid)"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+{
+  "calendar": {
+    "title": "Calendar",
+    "reload": "Reload Calendar",
+    "loading": "Loading...",
+    "order": {
+      "title": "Viewing Order #{{ id }} Summary",
+      "redirect": "View Order"
+    },
+    "order-entity": {
+      "description": "Description",
+      "customer": "Customer ID",
+      "price": "Price",
+      "orderDate": "Date Ordered",
+      "dueDate": "Deadline"
+    },
+    "dateNav": {
+      "title": "Go to date",
+      "go": "Go"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+<head>
+  <title th:text="#{email.activation.title}">Orderly account activation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}"/>
+  <style>
+    .footer-text {
+      color: #ffffff;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+<div id="email-container" style="width: 600px">
+  <div id="header-banner" style="height: 100px; width: 600px; background-color: #c29082">
+    <img src="https://orderlyapp.live/content/images/OrderlyEmail_HeaderBanner.png" alt="Orderly Logo" style="height: 100%; max-height: 100px">
+  </div>
+  <h2 th:text="#{email.activation.greeting(${user.login})}">Hi</h2>
+  <p th:text="#{email.activation.text1}">Your Orderly account has been created, please click on the URL below to
+    activate it:</p>
+  <p>
+    <a th:with="url=(@{|${baseUrl}/account/activate?key=${user.activationKey}|})" th:href="${url}" th:text="${url}">Activation
+      link</a>
+  </p>
+  <p>
+    <span th:text="#{email.activation.notYou}">If this wasn't you, please notify us at </span>
+    <a href="mailto:contactus@orderlyapp.live">contactus@orderlyapp.live</a>
+    <span th:text="#{email.activation.notYou2}">, and we'll ensure that the account is deleted promptly.</span>
+  </p>
+  <p>
+    <span th:text="#{email.activation.text2}">Regards, </span>
+    <br/>
+    <em th:text="#{email.signature}">The Orderly Team</em>
+  </p>
+  <div id="footer-banner" style="height: 130px; width: 600px; background-color: #c29082">
+    <img src="https://orderlyapp.live/content/images/OrderlyEmail_FooterBox.png" alt="Orderly Logo" style="height: 130px; float:left"/>
+    <div style="padding: 20px;">
+      <div class="footer-text"><i>Making your business more Orderly</i></div>
+      <div class="footer-text"><a href="https://orderlyapp.live">orderlyapp.live</a></div>
+      <br/>
+      <div class="footer-text">Get in touch!</div>
+      <div class="footer-text"><a href="mailto:contactus@orderlyapp.live">contactus@orderlyapp.live</a></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

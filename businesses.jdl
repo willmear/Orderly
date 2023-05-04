@@ -1,0 +1,8 @@
+entity Businesses {
+    name String required
+    summary TextBlob required
+    rating Integer
+    location String
+    type String required
+    image ImageBlob required
+}

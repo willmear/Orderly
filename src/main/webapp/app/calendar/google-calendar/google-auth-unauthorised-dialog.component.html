@@ -1,0 +1,28 @@
+<form aria-label="Google Account Session Expired" *ngIf="googleAccount" name="googleAccountExpiredForm" (ngSubmit)="continueSignIn()">
+  <div class="modal-header">
+    <h4 class="modal-title" jhiTranslate="google.expired.title">Google Account Session Expired</h4>
+
+    <button aria-label="Exit" type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></button>
+  </div>
+
+  <div class="modal-body">
+    <jhi-alert-error></jhi-alert-error>
+    <p id="jhi-googleAuth-expired-heading" jhiTranslate="google.expired.heading" [translateValues]="{ acc: googleAccount }">
+      The session for '{{ googleAccount }}' has expired.
+    </p>
+
+    <p id="jhi-googleAuth-expired-body" jhiTranslate="google.expired.body">
+      To access events from this Google Account, please re-authenticate your Google Account
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button aria-label="Cancel" type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+      <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>
+
+    <button aria-label="Sign into Google" id="jhi-confirm-google-reauth" type="submit" class="btn btn-primary">
+      <fa-icon [icon]="['fab', 'google']"></fa-icon>&nbsp;<span jhiTranslate="google.expired.reauth">Sign in to Google</span>
+    </button>
+  </div>
+</form>

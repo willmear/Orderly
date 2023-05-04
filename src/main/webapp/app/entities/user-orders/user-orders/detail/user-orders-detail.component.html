@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userOrders">
+      <h2 data-cy="userOrdersDetailsHeading"><span jhiTranslate="teamprojectApp.userOrdersUserOrders.detail.title">User Orders</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ userOrders.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.orderNum">Order Num</span></dt>
+        <dd>
+          <span>{{ userOrders.orderNum }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.orderDescription">Order Description</span></dt>
+        <dd>
+          <span>{{ userOrders.orderDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.deliveryAddress">Delivery Address</span></dt>
+        <dd>
+          <span>{{ userOrders.deliveryAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.dateOrdered">Date Ordered</span></dt>
+        <dd>
+          <span>{{ userOrders.dateOrdered | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.dueDate">Due Date</span></dt>
+        <dd>
+          <span>{{ userOrders.dueDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.customerID">Customer ID</span></dt>
+        <dd>
+          <span>{{ userOrders.customerID }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.productionTime">Production Time</span></dt>
+        <dd>
+          <span>{{ userOrders.productionTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.productionCost">Production Cost</span></dt>
+        <dd>
+          <span>{{ userOrders.productionCost }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.price">Price</span></dt>
+        <dd>
+          <span>{{ userOrders.price }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.userOrdersUserOrders.user">User</span></dt>
+        <dd>
+          <span>{{ userOrders.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-orders', userOrders.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

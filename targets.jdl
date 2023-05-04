@@ -1,0 +1,8 @@
+
+entity Targets {
+	text String
+}
+
+relationship ManyToOne {
+	Targets{user(login)} to User
+}

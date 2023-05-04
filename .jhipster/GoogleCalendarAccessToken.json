@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230413195230",
+  "clientRootFolder": "user-orders",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "google_calendar_access_token",
+  "fields": [
+    {
+      "fieldName": "encryptedToken",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "2048"
+    },
+    {
+      "fieldName": "expires",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "GoogleCalendarAccessToken",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no",
+  "skipClient": true,
+  "skipServer": true
+}

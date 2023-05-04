@@ -1,0 +1,33 @@
+{
+  "google": {
+    "signin": {
+      "button": "Link Google Calendar",
+      "title": "Link a Google Calendar",
+      "body1": "You can link your Google Account to Orderly to seamlessly synchronise your Orderly events & deadlines with Google Calendar.",
+      "body2": "Once you've granted Orderly permission, we will create a new calendar in your account, so we make sure we're not interfering with other events you may have in your account.",
+      "body3": "Your calendar events and order deadlines will be synchronised to your Google Calendar, and any events you create in the new Orderly calendar in your account will display in Orderly.",
+      "body4": "From the moment you grant us permission to access your Google Calendar, sessions only last 60 minutes, so be sure we will never access your personal data without your permission! Once sessions expire, you must reauthenticate your Google Account.",
+      "body5": "Please note, to preserve data integrity, you cannot change the properties of calendar events that were originally created in the Orderly App, or Order details, in your Google Calendar.",
+      "body6": "To make changes to these events, please make them in the Orderly App. You can, however, make changes to events you create in Google Calendar, and these will be propagated to the Orderly app when the calendar is reloaded.",
+      "body7": "To grant Orderly access to your Google Calendar Account, click the button below to sign in to Google. You can sign out of your Google Account from Orderly at any time, at which point any events gathered from your Google Calendar account shall be removed from the Orderly app. They shall still remain in your Google Calendar account."
+    },
+    "signout": {
+      "button": "Sign out of Google",
+      "heading": "Are you sure you want to sign out of your {{ acc }} Google Account?",
+      "title": "Confirm sign out",
+      "confirm": "Sign out",
+      "body": "Events that were created in your Google Calendar will be removed from the calendar, and your Orderly account. They will, however, still remain in your Google Calendar account"
+    },
+    "eventModal": {
+      "title": "Viewing Event: {{ name }}",
+      "account": "From account: {{ account }}",
+      "redirect": "View event in Google Calendar"
+    },
+    "expired": {
+      "title": "Google Account Session Expired",
+      "heading": "The session for '{{ acc }}' has expired",
+      "body": "To access events from this Google Account, please re-authenticate your Google Account",
+      "reauth": "Sign in to Google"
+    }
+  }
+}

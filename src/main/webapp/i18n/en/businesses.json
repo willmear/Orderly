@@ -1,0 +1,29 @@
+{
+  "teamprojectApp": {
+    "businesses": {
+      "home": {
+        "title": "Businesses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Businesses",
+        "createOrEditLabel": "Create or edit a Businesses",
+        "notFound": "No Businesses found"
+      },
+      "created": "A new Businesses is created with identifier {{ param }}",
+      "updated": "A Businesses is updated with identifier {{ param }}",
+      "deleted": "A Businesses is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Businesses {{ id }}?"
+      },
+      "detail": {
+        "title": "Businesses"
+      },
+      "id": "ID",
+      "name": "Name",
+      "summary": "Summary",
+      "rating": "Rating",
+      "location": "Location",
+      "type": "Type",
+      "image": "Image"
+    }
+  }
+}

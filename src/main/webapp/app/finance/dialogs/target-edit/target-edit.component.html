@@ -1,0 +1,18 @@
+<form #editTargetForm="ngForm" (ngSubmit)="onTargetSave(editTargetForm.value)">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Target!</h4>
+
+    <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="close()"></button>
+  </div>
+
+  <div class="modal-body">
+    Update Target:
+    <label for="inputTarget" class="sr-only">Target</label>
+    <input name="text" type="text" class="form-control" id="inputTarget" placeholder="Set Target..." ngModel />
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+  </div>
+</form>

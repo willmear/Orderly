@@ -1,0 +1,22 @@
+entity CalendarEvent {
+	name String required
+	description String
+	start ZonedDateTime required
+	end ZonedDateTime required
+	location String
+}
+
+relationship ManyToOne {
+	CalendarEvent{user(login)} to User
+}
+
+
+entity Inventory {
+    name String required
+    quantity Integer required
+    status String required
+}
+
+relationship ManyToOne {
+    Inventory{user(login)} to User
+}

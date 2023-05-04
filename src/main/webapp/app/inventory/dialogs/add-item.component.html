@@ -1,0 +1,35 @@
+<form name="form" #itemForm="ngForm" (ngSubmit)="save(itemForm.value)" ngNativeValidate>
+  <div class="modal-header">
+    <h4 class="modal-title">Add an Item</h4>
+    <button type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="close()"></button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row mb-3">
+      <label class="form-label" for="orderNum">Name</label>
+      <input type="text" class="form-control" name="orderNum" id="orderNum" ngModel required />
+    </div>
+
+    <div class="row mb-3">
+      <label class="form-label" for="customerID">Quantity</label>
+      <input type="text" class="form-control" name="customerID" id="customerID" ngModel required />
+    </div>
+
+    <div class="row mb-3">
+      <label class="form-label" for="orderDescription">Status</label>
+      <input type="text" class="form-control" name="orderDescription" id="orderDescription" ngModel required />
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" id="cancel-save" class="btn btn-secondary" (click)="close()">
+      <fa-icon icon="ban"></fa-icon>
+      <span>Cancel</span>
+    </button>
+
+    <button type="submit" id="save-entity" class="btn btn-primary">
+      <fa-icon icon="save"></fa-icon>
+      <span>Save</span>
+    </button>
+  </div>
+</form>

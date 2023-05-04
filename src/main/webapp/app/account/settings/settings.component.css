@@ -1,0 +1,28 @@
+h1 {
+  font-size: 2em;
+  text-decoration: underline;
+  text-align: left;
+  padding: 0.7%;
+  margin-left: 1.5%;
+}
+
+.accessibilityFeatures {
+  height: 150%;
+  width: 45%;
+  margin-right: 5%;
+  /*float: left;*/
+}
+
+.header {
+  font-size: 1.5em;
+  text-decoration: underline;
+  text-align: center;
+  padding: 0.7%;
+  margin-left: 1.5%;
+}
+
+h2 {
+  font-size: 1.5em;
+  text-align: left;
+  float: left;
+}

@@ -1,0 +1,10 @@
+entity Inventory {
+    name String required
+    quantity Integer required
+    status String required
+}
+
+relationship ManyToOne {
+    Inventory{user(login)} to User
+
+}

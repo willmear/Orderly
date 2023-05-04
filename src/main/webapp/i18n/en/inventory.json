@@ -1,0 +1,27 @@
+{
+  "teamprojectApp": {
+    "inventory": {
+      "home": {
+        "title": "Inventories",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Inventory",
+        "createOrEditLabel": "Create or edit a Inventory",
+        "notFound": "No Inventories found"
+      },
+      "created": "A new Inventory is created with identifier {{ param }}",
+      "updated": "A Inventory is updated with identifier {{ param }}",
+      "deleted": "A Inventory is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Inventory {{ id }}?"
+      },
+      "detail": {
+        "title": "Inventory"
+      },
+      "id": "ID",
+      "name": "Name",
+      "quantity": "Quantity",
+      "status": "Status",
+      "user": "User"
+    }
+  }
+}

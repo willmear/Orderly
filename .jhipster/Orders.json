@@ -1,0 +1,59 @@
+{
+  "applications": "*",
+  "changelogDate": "20230422125653",
+  "clientRootFolder": "user-orders",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "orders",
+  "fields": [
+    {
+      "fieldName": "orderNum",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderDescription",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "deliveryAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOrdered",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerID",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "productionTime",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "productionCost",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Orders",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no",
+  "skipServer": true
+}

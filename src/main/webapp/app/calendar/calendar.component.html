@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-7">
+    <h1 class="text-capitalize" jhiTranslate="calendar.title">Calendar</h1>
+
+    <jhi-alert></jhi-alert>
+
+    <div id="orderlyCalendarElement"></div>
+  </div>
+  <div class="col-md-3">
+    <div id="eventToggles">
+      <h3 style="text-align: center">Show:</h3>
+      <br />
+      <div id="orderToggle" class="toggle-container">
+        <span>Order deadlines </span>
+        <label for="orderToggleInput" aria-roledescription="Toggle switch" role="checkbox" [attr.aria-checked]="showOrders" class="switch">
+          <input
+            aria-label="Show order deadlines, defaulted to on"
+            id="orderToggleInput"
+            type="checkbox"
+            [(ngModel)]="showOrders"
+            (ngModelChange)="toggleOrders()"
+          />
+          <span class="slider slider-order round"></span>
+        </label>
+      </div>
+      <br />
+      <div id="customEventToggle" class="toggle-container">
+        <span>Custom events </span>
+        <label for="customToggleInput" aria-roledescription="Toggle switch" role="checkbox" [attr.aria-checked]="showCustom" class="switch">
+          <input
+            aria-label="Show customer events, defaulted to on"
+            id="customToggleInput"
+            type="checkbox"
+            [(ngModel)]="showCustom"
+            (ngModelChange)="toggleCustom()"
+          />
+          <span class="slider slider-customEvent round"></span>
+        </label>
+      </div>
+      <br />
+      <div *ngIf="gcalLoaded" id="googleEventToggle" class="toggle-container">
+        <span>Google Calendar events </span>
+        <label for="googleToggleInput" aria-roledescription="Toggle switch" role="checkbox" [attr.aria-checked]="showGoogle" class="switch">
+          <input
+            aria-label="Show Google events, defaulted to on"
+            id="googleToggleInput"
+            type="checkbox"
+            [(ngModel)]="showGoogle"
+            (ngModelChange)="toggleGoogle()"/>
+          <span class="slider slider-googleEvent round"></span>
+        </label>
+      </div>
+    </div>
+    <br />
+    <div id="calendar-controls" class="controls-container">
+      <button class="btn btn-info me-2 control-button" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>{{ isLoading ? ('calendar.loading' | translate) : ('calendar.reload' | translate) }}</span>
+      </button>
+      <br />
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-calendar-event control-button"
+        [disabled]="isLoading"
+        (click)="createNewEvent()"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.calendarEvent.home.createLabel"> Create a new Calendar Event </span>
+      </button>
+      <br />
+      <button
+        *ngIf="!gauthed"
+        id="jh-authorise-google-calendar"
+        class="btn btn-secondary control-button"
+        [disabled]="isLoading"
+        (click)="gauth(true)"
+      >
+        <fa-icon [icon]="['fab', 'google']"></fa-icon>
+        <span jhiTranslate="google.signin.button"> Link Google Calendar </span>
+      </button>
+      <p *ngIf="gauthed">Signed into {{ googleAccount }}</p>
+      <button
+        *ngIf="gauthed"
+        id="jh-signout-google-calendar"
+        class="btn btn-secondary control-button"
+        [disabled]="isLoading"
+        (click)="gsignout()"
+      >
+        <fa-icon [icon]="['fab', 'google']"></fa-icon>
+        <span jhiTranslate="google.signout.button"> Sign out of Google </span>
+      </button>
+      <br />
+    </div>
+    <br />
+    <div id="summary">
+      <h3 id="summaryTitle" style="text-align: center">Events {{ view }}</h3>
+      <div class="ev-count-box ev-box-orders control-panel-summary" *ngIf="showOrders" id="orderCount">
+        <span class="ev-count-num">{{ numOrders }}</span
+        ><span class="ev-count-desc"> order deadlines</span>
+      </div>
+      <div class="ev-count-box ev-box-custom control-panel-summary" *ngIf="showCustom" id="customCount">
+        <span class="ev-count-num">{{ numCustom }}</span
+        ><span class="ev-count-desc"> other events</span>
+      </div>
+      <div class="ev-count-box ev-box-google control-panel-summary" *ngIf="gcalLoaded && showGoogle" id="googleCount">
+        <span class="ev-count-num">{{ numGoogle }}</span
+        ><span class="ev-count-desc"> Google Calendar events</span>
+      </div>
+    </div>
+  </div>
+</div>

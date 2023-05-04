@@ -1,0 +1,41 @@
+/* orders.component.css */
+
+.button {
+  background-color: rgba(174, 91, 67, 0.09);
+  border-color: rgb(65, 65, 65);
+  border-radius: 4px;
+  border-width: 1px;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+.orders-header {
+}
+
+.current-date {
+  margin-top: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 3fr, 2fr;
+  gap: 15px;
+}
+
+.current-orders,
+.header-left {
+  grid-column: 1;
+}
+
+.past-orders,
+.header-right {
+  grid-column: 2;
+}
+
+.list-group-item {
+  min-height: 32px;
+}
+
+.card-header {
+  background-color: rgba(174, 91, 67, 0.22);
+}

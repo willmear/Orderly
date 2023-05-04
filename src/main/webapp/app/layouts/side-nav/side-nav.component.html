@@ -1,0 +1,27 @@
+<div class="container-fluid" [ngSwitch]="account !== null">
+  <div id="mySidenav" class="sidenav">
+    <a routerLink="/" id="home" aria-label="Home page">Home<fa-icon class="faIcon" icon="home"></fa-icon></a>
+
+    <a routerLink="chatMessage" id="chatMessage" aria-label="Messages page"
+      >Messages<fa-icon class="faIcon" icon="commenting" [fixedWidth]="true"></fa-icon
+    ></a>
+
+    <a routerLink="businesses" id="businesses" aria-label="Businesses page"
+      >Businesses<fa-icon class="faIcon" [icon]="faBriefcase" [fixedWidth]="true"></fa-icon
+    ></a>
+
+    <a routerLink="calendar" id="calendar" aria-label="Calendar page" *ngSwitchCase="true"
+      >Calendar <fa-icon class="faIcon" icon="calendar-days" [fixedWidth]="true"></fa-icon
+    ></a>
+
+    <a routerLink="orders" id="orders" aria-label="Orders page" *ngSwitchCase="true"
+      >Orders<fa-icon class="faIcon" icon="th-list" [fixedWidth]="true"></fa-icon
+    ></a>
+    <a routerLink="inventory" id="inventory" aria-label="Inventory page" *ngSwitchCase="true"
+      >Inventory<fa-icon class="faIcon" icon="list-ol" [fixedWidth]="true"></fa-icon
+    ></a>
+    <a routerLink="finance" id="finance" aria-label="Finance page" *ngSwitchCase="true"
+      >Finance<fa-icon class="faIcon" icon="coins" [fixedWidth]="true"></fa-icon
+    ></a>
+  </div>
+</div>

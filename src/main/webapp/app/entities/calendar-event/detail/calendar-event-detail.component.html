@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="calendarEvent">
+      <h2 data-cy="calendarEventDetailsHeading"><span jhiTranslate="teamprojectApp.calendarEvent.detail.title">Calendar Event</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ calendarEvent.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.calendarEvent.name">Name</span></dt>
+        <dd>
+          <span>{{ calendarEvent.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.calendarEvent.description">Description</span></dt>
+        <dd>
+          <span>{{ calendarEvent.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.calendarEvent.start">Start</span></dt>
+        <dd>
+          <span>{{ calendarEvent.start | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.calendarEvent.end">End</span></dt>
+        <dd>
+          <span>{{ calendarEvent.end | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.calendarEvent.location">Location</span></dt>
+        <dd>
+          <span>{{ calendarEvent.location }}</span>
+        </dd>
+        <dt><span jhiTranslate="teamprojectApp.calendarEvent.user">User</span></dt>
+        <dd>
+          <span>{{ calendarEvent.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/calendar-event', calendarEvent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,813 @@
+@import 'bootstrap-variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+/* ==============================================================
+Bootstrap tweaks
+===============================================================*/
+.dark-mode {
+  background-color: black;
+  color: white;
+  h1,
+  h2,
+  h3,
+  button,
+  body,
+  h4,
+  h5,
+  .card,
+  option,
+  table,
+  .row,
+  .col,
+  .dropdown-menu {
+    background-color: black;
+    color: white;
+  }
+  div,
+  p,
+  a,
+  .navbar {
+    background: none;
+    color: white;
+  }
+
+  #home,
+  #calendar,
+  #finance,
+  #chatMessage,
+  #orders,
+  #inventory,
+  #businesses {
+    background-color: #713832;
+    border: 2px solid black;
+  }
+  .chat-app .people-list {
+    background-color: #713832;
+  }
+  .chat .chat-history .my-message {
+    background-color: #885157;
+  }
+  .chat .chat-history .my-message:after {
+    border-bottom-color: #885157;
+  }
+  form.advertiseWithUsButton button {
+    background-color: black;
+    color: #e4ae9c;
+    border: 1px solid grey;
+  }
+  .accessibilityFeatures {
+    background: black;
+    color: white;
+    padding: 3%;
+  }
+  form.increase-font button,
+  form.high-contrast-form button,
+  form.dark-mode-form button {
+    background-color: black;
+    color: #e4ae9c;
+    border: 1px solid white;
+  }
+  form.increase-font button:hover,
+  form.high-contrast-form button:hover,
+  form.dark-mode-form button:hover {
+    background: #e4ae9c;
+    color: black;
+    border: 1px solid black;
+  }
+  form.advertiseWithUsButton button:hover {
+    background: #e4ae9c;
+    color: black;
+  }
+  .menu {
+    background: none;
+  }
+  .categories,
+  .categories2 {
+    button {
+      color: #ffffff;
+      border-color: #ae5b43;
+      background-color: #ae5b43;
+    }
+  }
+
+  form.example button {
+    background-color: #683531;
+    color: white;
+  }
+
+  form.example button:hover {
+    color: #683531;
+    background-color: white;
+  }
+
+  .people-list .chat-list li:hover,
+  .people-list .chat-list li.active {
+    background: rgba(179, 65, 59, 0.74);
+  }
+  .people-list .status {
+    color: #5d466f;
+  }
+  .chat .chat-history .message-data-time,
+  .chat .chat-history .message {
+    color: #8a8d98;
+  }
+  .chat .chat-history .other-message {
+    background: #6e5293;
+  }
+  .chat .chat-history .other-message:after {
+    border-bottom-color: #6e5293;
+  }
+  .online {
+    color: #4c6c22;
+  }
+  .offline {
+    color: #783c4b;
+  }
+  .me {
+    color: #154769;
+  }
+
+  .grid-container {
+    background-color: black;
+  }
+  .grid-container > div {
+    background-color: #683531;
+  }
+  .btn-group-vertical button,
+  .btn-group-vertical2 button {
+    background-color: #713832;
+    color: white;
+  }
+  tr,
+  td {
+    background-color: #683531;
+    color: white;
+  }
+  .businessSearch {
+    background-color: #683531;
+    color: white;
+  }
+}
+
+.high-contrast {
+  background-color: green;
+  color: red;
+  h1,
+  h2,
+  h3,
+  button,
+  body,
+  h4,
+  h5,
+  .card,
+  option,
+  table,
+  .row,
+  .col {
+    background-color: green;
+    color: red;
+  }
+  div,
+  p,
+  a {
+    background: none;
+    color: red;
+  }
+
+  #home,
+  #calendar,
+  #finance,
+  #chatMessage,
+  #orders,
+  #inventory,
+  #businesses {
+    background-color: greenyellow;
+    border: 2px solid black;
+  }
+  .chat-app .people-list {
+    background-color: greenyellow;
+  }
+  .chat .chat-history .my-message {
+    background-color: greenyellow;
+  }
+  .chat .chat-history .my-message:after {
+    border-bottom-color: greenyellow;
+  }
+  form.advertiseWithUsButton button {
+    background-color: green;
+    color: #e47bff;
+    border: 1px solid grey;
+  }
+  .accessibilityFeatures {
+    background: green;
+    color: red;
+    padding: 3%;
+  }
+  form.increase-font button:hover,
+  form.high-contrast-form button:hover,
+  form.dark-mode-form button:hover {
+    background-color: green;
+    color: #e47bff;
+    border: 1px solid #e47bff;
+  }
+  form.increase-font button,
+  form.high-contrast-form button,
+  form.dark-mode-form button {
+    background: #e47bff;
+    color: green;
+    border: 1px solid #e47bff;
+  }
+
+  form.advertiseWithUsButton button:hover,
+  .navbar,
+  .dropdown-menu {
+    background: #e47bff;
+    color: green;
+  }
+  .search {
+    background-color: green;
+    p {
+      background-color: green;
+      color: red;
+    }
+  }
+  .menu {
+    background: none;
+  }
+  .categories,
+  .categories2 {
+    button {
+      color: red;
+      border-color: #00ff1b;
+      background-color: #00ff1b;
+    }
+  }
+
+  form.example button {
+    background-color: #00a2ff;
+    color: red;
+  }
+
+  form.example button:hover {
+    color: #00a2ff;
+    background-color: red;
+  }
+
+  .people-list .chat-list li:hover,
+  .people-list .chat-list li.active {
+    background: #88ac00;
+  }
+  .people-list .status {
+    color: #5d466f;
+  }
+  .chat .chat-history .message-data-time,
+  .chat .chat-history .message {
+    color: red;
+  }
+  .chat .chat-history .other-message {
+    background: #b3a700;
+  }
+  .chat .chat-history .other-message:after {
+    border-bottom-color: #b3a700;
+  }
+  .online {
+    color: #4c6c22;
+  }
+  .offline {
+    color: #783c4b;
+  }
+  .me {
+    color: #154769;
+  }
+
+  .grid-container {
+    background: green;
+    color: red;
+  }
+  .grid-container > div {
+    background-color: green;
+    color: red;
+  }
+  .btn-group-vertical button,
+  .btn-group-vertical2 button {
+    background-color: purple;
+    color: yellow;
+  }
+  tr,
+  td {
+    background-color: orange;
+    color: cyan;
+  }
+  .businessSearch {
+    background-color: orange;
+    color: cyan;
+  }
+}
+
+.navbar {
+  background-color: #c29082;
+}
+
+:focus {
+  outline: 2px solid red;
+}
+.dark-mode .modal-content {
+  background: black !important;
+}
+.high-contrast .modal-content {
+  background: green !important;
+}
+.dark-mode .modal-header .btn-close {
+  background: transparent
+    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
+    center/1em auto no-repeat;
+}
+
+.grid-container {
+  background-color: #edd9d3;
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.btn-group-vertical button {
+  background-color: #f2d9d3; /* Green background */
+  color: white; /* White text */
+}
+.btn-group-vertical2 button {
+  background-color: #f2d9d3; /* Green background */
+  color: white; /* White text */
+}
+
+.card {
+  background: #fff;
+}
+.chat-app .people-list {
+  color: #000000;
+}
+.people-list {
+  background: #edd9d3;
+}
+.people-list .chat-list li:hover {
+  background: #efefef;
+}
+.people-list .chat-list li.active {
+  background: #efefef;
+}
+.people-list .status {
+  color: #a782b8;
+}
+.chat .chat-history .message-data-time {
+  color: #434651;
+}
+.chat .chat-history .message {
+  color: #444;
+}
+.chat .chat-history .my-message {
+  background: #c99a91;
+}
+.chat .chat-history .other-message {
+  background: #dcc7eb;
+}
+.online {
+  color: #86c541;
+}
+.offline {
+  color: #e47297;
+}
+.me {
+  color: #1d8ecd;
+}
+.chat .chat-history .my-message:after {
+  bottom: 100%;
+  left: 30px;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: #c99a91;
+  border-width: 10px;
+  margin-left: -10px;
+}
+.chat .chat-history .other-message:after {
+  bottom: 100%;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  margin-left: -10px;
+  border: 10px solid transparent;
+  border-bottom-color: #dcc7eb;
+  left: 93%;
+}
+
+form.example button {
+  background-color: #c89687;
+  color: white;
+}
+form.example button:hover {
+  color: #c89687;
+  background-color: white;
+}
+.popularCategories {
+  text-align: center;
+  background-color: white;
+  padding: 0.7%;
+  p {
+    font-size: 2.5em;
+  }
+}
+.categories {
+  text-align: center;
+  color: #ae5b43;
+  margin-left: 4.5%;
+  margin-top: -1.5%;
+  padding: 0.7%;
+  float: left;
+  button {
+    color: #ae5b43;
+    border-color: #ffffff;
+    background-color: #ffffff;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  fa-icon {
+    font-size: 2.5em;
+  }
+  p {
+    font-size: 1.5em;
+  }
+}
+.categories2 {
+  text-align: center;
+  color: #ae5b43;
+
+  margin-left: 4.5%;
+  margin-top: 1.5%;
+  padding-left: 0.7%;
+  padding-right: 0.7%;
+  float: left;
+  button {
+    color: #ae5b43;
+    border-color: #ffffff;
+    background-color: #ffffff;
+    box-shadow: none;
+    text-shadow: none;
+  }
+  fa-icon {
+    font-size: 2.5em;
+  }
+  p {
+    font-size: 1.5em;
+  }
+}
+.search {
+  width: 100%;
+  text-align: center;
+  background-color: #555555;
+  padding: 0.7%;
+  p {
+    margin-top: -1%;
+    color: white;
+    font-size: 2em;
+  }
+}
+.advertiseWithUs {
+  width: 100%;
+  float: left;
+  background-color: #e4ae9c;
+  img {
+    float: left;
+    width: 25%;
+    height: 202px;
+    object-fit: cover;
+  }
+}
+.accessibilityFeatures {
+  background: #e4ae9c;
+  color: white;
+  padding: 3%;
+}
+form.increase-font button,
+form.high-contrast-form button,
+form.dark-mode-form button {
+  background-color: white;
+  color: #e4ae9c;
+  border: 1px solid white;
+}
+form.increase-font button:hover,
+form.high-contrast-form button:hover,
+form.dark-mode-form button:hover {
+  background: #e4ae9c;
+  color: white;
+  border: 1px solid black;
+}
+/* Style the submit button */
+form.advertiseWithUsButton button {
+  width: 70%;
+  background-color: white;
+  color: #e4ae9c;
+  border: 1px solid grey;
+  padding-bottom: 1%;
+  font-weight: bold;
+  cursor: pointer;
+}
+form.advertiseWithUsButton button:hover {
+  background: #e4ae9c;
+  color: white;
+}
+/* Clear floats */
+form.advertiseWithUsButton::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+#home {
+  top: 10%;
+  background-color: #c89687;
+}
+#calendar {
+  top: 43%;
+  background-color: #c89687;
+}
+#finance {
+  top: 76%;
+  background-color: #c89687;
+}
+#chatMessage {
+  top: 21%;
+  background-color: #c89687;
+}
+#orders {
+  top: 54%;
+  background-color: #c89687;
+}
+#inventory {
+  top: 65%;
+  background-color: #c89687;
+}
+#businesses {
+  top: 32%;
+  background-color: #c89687;
+}
+#mySidenav a {
+  position: fixed;
+  left: -9%;
+  transition: 0.3s;
+  padding: 1.3%;
+  width: 12%;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: white;
+  border-radius: 0 0.3% 0.3% 0;
+  z-index: 1000;
+}
+#mySidenav .faIcon {
+  position: absolute;
+  right: 5%;
+}
+#mySidenav a:hover {
+  left: 0;
+}
+.jh-card {
+  margin-left: 2%;
+}
+body,
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
+}
+
+/* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
+a {
+  color: #533f03;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #533f03;
+}
+
+/* override hover color for dropdown-item forced by bootstrap to all a:not([href]):not([tabindex]) elements in _reboot.scss */
+a:not([href]):not([tabindex]):hover.dropdown-item {
+  color: $dropdown-link-hover-color;
+}
+
+/* override .dropdown-item.active background-color on hover */
+.dropdown-item.active:hover {
+  background-color: mix($dropdown-link-hover-bg, $dropdown-link-active-bg, 50%);
+}
+
+a:hover {
+  /* make sure browsers use the pointer cursor for anchors, even with no href */
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  color: $dropdown-link-hover-color;
+}
+
+/* ==========================================================================
+Browser Upgrade Prompt
+========================================================================== */
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+Generic styles
+========================================================================== */
+
+/* Error highlight on input fields */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid green;
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid red;
+}
+
+/* other generic styles */
+
+.jh-card {
+  padding: 1.5%;
+  margin-top: 20px;
+  border: none;
+}
+
+.error {
+  color: white;
+  background-color: red;
+}
+
+.pad {
+  padding: 10px;
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.break {
+  white-space: normal;
+  word-break: break-all;
+}
+
+.form-control {
+  background-color: #fff;
+}
+
+.readonly {
+  background-color: #eee;
+  opacity: 1;
+}
+
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.hand,
+[jhisortby] {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+Custom alerts for notification
+========================================================================== */
+.alerts {
+  .alert {
+    text-overflow: ellipsis;
+    pre {
+      background: none;
+      border: none;
+      font: inherit;
+      color: inherit;
+      padding: 0;
+      margin: 0;
+    }
+    .popover pre {
+      font-size: 10px;
+    }
+  }
+  .jhi-toast {
+    position: fixed;
+    width: 100%;
+    &.left {
+      left: 5px;
+    }
+    &.right {
+      right: 5px;
+    }
+    &.top {
+      top: 55px;
+    }
+    &.bottom {
+      bottom: 55px;
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .alerts .jhi-toast {
+    width: 50%;
+  }
+}
+
+/* ==========================================================================
+entity list page css
+========================================================================== */
+
+.table-entities thead th .d-flex > * {
+  margin: auto 0;
+}
+
+/* ==========================================================================
+entity detail page css
+========================================================================== */
+.row-md.jh-entity-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 768px) {
+  .row-md.jh-entity-details > {
+    dt {
+      float: left;
+      overflow: hidden;
+      clear: left;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0.5em 0;
+    }
+    dd {
+      border-bottom: 1px solid #eee;
+      padding: 0.5em 0;
+      margin-left: 0;
+    }
+  }
+}
+
+/* ==========================================================================
+ui bootstrap tweaks
+========================================================================== */
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+.thread-dump-modal-lock {
+  max-width: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  padding-left: 0px;
+}
+
+/* ==========================================================================
+angular-cli removes postcss-rtl processed inline css, processed rules must be added here instead
+========================================================================== */
+/* page-ribbon.component.scss */
+.ribbon {
+  left: -3.5em;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* navbar.component.scss */
+.navbar {
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.navbar-dark {
+  --bs-navbar-color: rgb(255, 255, 255) !important;
+}
+
+/* jhipster-needle-scss-add-main JHipster will add new css style */

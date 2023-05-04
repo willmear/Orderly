@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orderly Home Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="imageCarousel">
+      <ngb-carousel>
+        <ng-template ngbSlide>
+          <img src="../../../content/images/bookshopbusiness.jpg" alt="Image of a bookshop business" style="width: 80%" />
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../content/images/cafebusiness.jpg" alt="Image of a cafe" style="width: 80%" />
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../content/images/constructionbusiness.jpg" alt="Image of a construction business" style="width: 80%" />
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../content/images/carpetbusiness.jpg" alt="Image of a carpet fitter" style="width: 80%" />
+        </ng-template>
+        <ng-template ngbSlide>
+          <img src="../../../content/images/painter.jpg" alt="Image of a painter" style="width: 80%" />
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="search">
+      <p>
+        <strong> Use the search bar to find a business near you! </strong>
+      </p>
+      <div>
+        <form class="example" action="">
+          <input
+            id="businessSearch"
+            type="text"
+            placeholder="Find a business..."
+            name="search"
+            aria-label="Text box to search for businesses"
+          />
+          <button (click)="businessSearch()" type="submit" aria-label="Search"><fa-icon [icon]="faSearch"></fa-icon></button>
+        </form>
+      </div>
+    </div>
+    <div class="popularCategories">
+      <p>
+        <strong> Popular Categories </strong>
+      </p>
+      <div class="categories">
+        <button aria-label="Filter by construction" type="button" (click)="businessFilter('Construction')">
+          <fa-icon [icon]="faBuilding"></fa-icon>
+        </button>
+        <p>Construction</p>
+      </div>
+      <div class="categories2">
+        <button aria-label="Filter by finance" type="button" (click)="businessFilter('Finance')">
+          <fa-icon [icon]="faDollar"></fa-icon>
+        </button>
+        <p>Finance</p>
+      </div>
+      <div class="categories">
+        <button aria-label="Filter by bookshop" type="button" (click)="businessFilter('Bookshop')">
+          <fa-icon [icon]="faBook"></fa-icon>
+        </button>
+        <p>Bookshop</p>
+      </div>
+      <div class="categories2">
+        <button aria-label="Filter by decoration" type="button" (click)="businessFilter('Decoration')">
+          <fa-icon [icon]="faPaintbrush"></fa-icon>
+        </button>
+        <p>Decoration</p>
+      </div>
+      <div class="categories">
+        <button aria-label="Filter by cafe" type="button" (click)="businessFilter('Cafe')"><fa-icon [icon]="faCoffee"></fa-icon></button>
+        <p>Cafe</p>
+      </div>
+      <div class="categories2">
+        <button aria-label="Filter by renovation" type="button" (click)="businessFilter('Renovation')">
+          <fa-icon [icon]="faHome"></fa-icon>
+        </button>
+        <p>Renovation</p>
+      </div>
+      <div class="categories">
+        <button aria-label="Filter by tech" type="button" (click)="businessFilter('Tech')"><fa-icon [icon]="faComputer"></fa-icon></button>
+        <p>Tech</p>
+      </div>
+    </div>
+    <div class="advertiseWithUs">
+      <img src="content/images/businessimage1.jpg" alt="Business meeting stock image" />
+      <div style="width: 50%; float: left; height: inherit">
+        <h2 style="font-size: 1.8em; text-align: center; font-weight: bold">
+          <strong> Do you own a business? </strong>
+          <br />
+          <strong>Want to manage your finances all in one place?</strong>
+          <br />
+          <strong>Keep tabs on all your orders and inventory?</strong>
+        </h2>
+        <a routerLink="account/register" aria-label="Register as a business owner">
+          <form class="advertiseWithUsButton" style="padding-left: 23%; font-size: 2em">
+            <button aria-label="Register as a business owner" type="submit" formaction="https://orderlyapp.live/account/register">
+              Advertise with us!
+            </button>
+          </form>
+        </a>
+      </div>
+      <img src="content/images/businessimage2.jpg" alt="Business stats stock image" />
+      <!--
+      <img src="content/images/businessimage1.jpg" alt="" />
+      <div style="width: 50%; float: left; background-color: #e4ae9c; background-repeat: no-repeat; background-size: cover">
+        <h2 style="font-size: 1.5em; text-align: center">
+          <strong>
+            Do you own a business? Want to manage your finances all in one place? Keep tabs on all your orders and inventory?
+          </strong>
+        </h2>
+        <a routerLink="account/register">
+          <form class="advertiseWithUsButton" style="padding-left: 30%">
+            <button type="submit" formaction="https://orderlyapp.live/account/register">Advertise with us!</button>
+          </form>
+        </a>
+      </div>
+      <img src="content/images/businessimage2.jpg" alt="" />
+      -->
+    </div>
+  </body>
+</html>

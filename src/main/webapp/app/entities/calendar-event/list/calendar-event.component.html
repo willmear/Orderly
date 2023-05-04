@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="CalendarEventHeading">
+    <span jhiTranslate="teamprojectApp.calendarEvent.home.title">Calendar Events</span>
+    <br>
+    <span *jhiHasAnyAuthority="'ROLE_ADMIN'" id ="description" jhiTranslate="teamprojectApp.calendarEvent.home.description" style="font-size: 65%">As an administrator, you can manage the calendar events of all Orderly users</span>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.calendarEvent.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-calendar-event"
+        [routerLink]="['/calendar-event/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.calendarEvent.home.createLabel"> Create a new Calendar Event </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="calendarEvents?.length === 0">
+    <span jhiTranslate="teamprojectApp.calendarEvent.home.notFound">No Calendar Events found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="calendarEvents && calendarEvents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.calendarEvent.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.calendarEvent.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="start">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.calendarEvent.start">Start</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="end">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.calendarEvent.end">End</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="location">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.calendarEvent.location">Location</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="user.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.calendarEvent.user">User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let calendarEvent of calendarEvents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/calendar-event', calendarEvent.id, 'view']">{{ calendarEvent.id }}</a>
+          </td>
+          <td>{{ calendarEvent.name }}</td>
+          <td>{{ calendarEvent.description }}</td>
+          <td>{{ calendarEvent.start | formatMediumDatetime }}</td>
+          <td>{{ calendarEvent.end | formatMediumDatetime }}</td>
+          <td>{{ calendarEvent.location }}</td>
+          <td>
+            {{ calendarEvent.user?.login }}
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/calendar-event', calendarEvent.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/calendar-event', calendarEvent.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(calendarEvent)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

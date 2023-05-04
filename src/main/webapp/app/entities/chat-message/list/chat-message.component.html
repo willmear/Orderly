@@ -1,0 +1,107 @@
+<div>
+  <h2 id="page-heading" data-cy="ChatMessageHeading">
+    <span jhiTranslate="teamprojectApp.chatMessage.home.title">Chat Messages</span>
+
+    <!--    <div class="d-flex justify-content-end">-->
+    <!--      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">-->
+    <!--&lt;!&ndash;        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>&ndash;&gt;-->
+    <!--        <span jhiTranslate="teamprojectApp.chatMessage.home.refreshListLabel">Refresh list</span>-->
+    <!--      </button>-->
+    <!--    </div>-->
+  </h2>
+
+  <!--&lt;!&ndash;  <jhi-alert-error></jhi-alert-error>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;  <jhi-alert></jhi-alert>&ndash;&gt;-->
+
+  <!--  <div class="alert alert-warning" id="no-result">-->
+  <!--    <span jhiTranslate="teamprojectApp.chatMessage.home.notFound">No Chat Messages found</span>-->
+  <!--  </div>-->
+
+  <!--  <ul>-->
+  <!--    <li *ngFor="let user of users">-->
+  <!--      {{user | json}}-->
+  <!--    </li>-->
+  <!--  </ul>-->
+  <!--  <table>-->
+  <!--    <thead>-->
+  <!--    <tr>-->
+  <!--      <th>Id</th>-->
+  <!--      <th>Message</th>-->
+  <!--      <th>Sender</th>-->
+  <!--      <th>Receiver</th>-->
+  <!--      <th>Timestamp</th>-->
+  <!--    </tr>-->
+  <!--    </thead>-->
+  <!--    <tbody>-->
+
+  <!--    <tr *ngFor="let chatMessage of chatMessages">-->
+  <!--&lt;!&ndash;      <td>{{user.id}}</td>&ndash;&gt;-->
+  <!--      <td>{{chatMessage.id}}</td>-->
+  <!--      <td>{{chatMessage.message}}</td>-->
+  <!--      <td>{{chatMessage.senderId}}</td>-->
+  <!--      <td>{{chatMessage.receiverId}}</td>-->
+  <!--      <td>{{chatMessage.timestamp}}</td>-->
+  <!--    </tr>-->
+  <!--    </tbody>-->
+  <!--  </table>-->
+</div>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-lg-10">
+      <div class="card chat-app">
+        <div id="plist" class="people-list">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><fa-icon icon="search"></fa-icon></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Search..." />
+          </div>
+          <ul class="list-unstyled chat-list mt-2 mb-0">
+            <li *ngFor="let receiverUser of receiverUsers" class="clearfix-active" (click)="setReceiverId(receiverUser.id)">
+              <div class="about" (click)="setReceiverId(receiverUser.id)">
+                <div class="name">{{ receiverUser.login }}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="chat">
+          <div class="chat-header clearfix">
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="chat-about">
+                  <h6 class="m-b-0">{{ receiverUser?.login }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-history">
+            <ul class="m-b-0" *ngIf="setReceiverId">
+              <li *ngFor="let message of filteredMessages" class="clearfix">
+                <div class="message-data" [ngClass]="{ 'text-right': message.senderId === currentUser?.id }">
+                  <span class="message-data-time">{{ message.timestamp }}</span>
+                </div>
+                <div class="message {{ message.senderId === currentUser?.id ? 'other-message float-right' : 'my-message' }}">
+                  {{ message.message }}
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="chat-message clearfix">
+            <div class="input-group mb-0">
+              <input [(ngModel)]="inputValue" type="text" class="form-control" placeholder="Enter text here..." />
+              <button (click)="storeInput(); refreshPage()" type="button" class="btn btn-primary">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><fa-icon icon="paper-plane"></fa-icon></span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

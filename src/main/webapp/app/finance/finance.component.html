@@ -1,0 +1,108 @@
+<h1 class="business-name">Finances</h1>
+<div class="container-max">
+  <div class="grid-container">
+    <div class="col targets">
+      <div class="card mb-3 rounded" style="height: 103vh">
+        <div class="card-body overflow-auto">
+          <h5 class="card-header">Targets</h5>
+
+          <form class="form-inline mt-2" #targetForm="ngForm" (ngSubmit)="onTargetCreate(targetForm.value)">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputTarget" class="sr-only">Target</label>
+              <input name="text" type="text" class="form-control" id="inputTarget" placeholder="Set Target..." ngModel />
+            </div>
+            <div class="text-center col">
+              <button type="submit" class="btn btn-primary mb-2 mx-sm-3 w-75">Add</button>
+            </div>
+          </form>
+
+          <div *ngFor="let target of targets" class="card mb-3 rounded">
+            <div class="card-body">
+              <h5 class="card-text align-middle">
+                {{ target.text }}
+              </h5>
+              <button (click)="onTargetDelete(target.id)" type="button" class="btn-close target-close" aria-label="Close"></button>
+              <button (click)="onEditTarget(target.id, target.user)" type="button" class="btn btn-primary btn-sm" style="float: inline-end">
+                Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="charts container">
+      <div class="row mb-4">
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100 rounded">
+            <div class="card-body" style="height: 48vh; overflow: hidden">
+              <h5 class="card-title">
+                Sales
+                <div ngbDropdown class="d-inline-block" style="float: inline-end">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    {{ chartOneTimescale }}
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem *ngFor="let timescale of timeScales" (click)="onChangeTimescaleOne(timescale)">
+                      {{ timescale }}
+                    </button>
+                  </div>
+                </div>
+              </h5>
+              <div style="width: 37.5vh; height: 37.5vh; margin: auto">
+                <!-- <img class="card-img-bottom" src="../../content/images/Pie-chart.jpg" alt="piechart" /> -->
+                <canvas class="pie-chart" baseChart [data]="pieChartData" [labels]="pieChartLabels" [type]="'pie'"> </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100 rounded">
+            <div class="card-body" style="height: 48vh; overflow: hidden">
+              <h5 class="card-title">
+                Revenue By Product (£)
+                <div ngbDropdown class="d-inline-block" style="float: inline-end">
+                  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    {{ chartTwoTimescale }}
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem *ngFor="let timescale of timeScales" (click)="onChangeTimescaleTwo(timescale)">
+                      {{ timescale }}
+                    </button>
+                  </div>
+                </div>
+              </h5>
+              <div style="width: 37.5vh; height: 37.5vh; margin: auto">
+                <!-- <img class="card-img-bottom" src="../../content/images/Pie-chart.jpg" alt="piechart" /> -->
+                <canvas class="pie-chart" baseChart [data]="pieChartDataTwo" [labels]="pieChartLabelsTwo" [type]="'pie'"> </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100 rounded">
+            <div class="card-body" style="height: 48vh; overflow: hidden">
+              <h5 class="card-title">Total Revenue (£)</h5>
+              <div style="width: 37.5vh; height: 37.5vh; margin: auto; position: relative; top: 25%">
+                <!-- <img class="card-img-bottom" src="../../content/images/Pie-chart.jpg" alt="piechart" /> -->
+                <canvas class="bar-chart" baseChart [data]="barChartData" [labels]="barChartLabels" [type]="'bar'"> </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100 rounded">
+            <div class="card-body" style="height: 48vh; overflow: hidden">
+              <h5 class="card-title">Revenue and Loss</h5>
+              <div style="width: 37.5vh; height: 37.5vh; margin: auto; position: relative; top: 25%">
+                <!-- <img class="card-img-bottom" src="../../content/images/Pie-chart.jpg" alt="piechart" /> -->
+                <canvas class="bar-chart" baseChart [data]="barChartDataTwo" [labels]="barChartLabelsTwo" [type]="'bar'"> </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

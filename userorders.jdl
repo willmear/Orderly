@@ -1,0 +1,15 @@
+entity UserOrders{
+    orderNum Long required
+    orderDescription String required
+    deliveryAddress String
+    dateOrdered LocalDate
+    dueDate LocalDate required
+    customerID Long required
+    productionTime Integer
+    productionCost Float
+    price Float required
+}
+
+relationship ManyToOne {
+    UserOrders{user(login)} to User
+}

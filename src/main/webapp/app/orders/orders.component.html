@@ -1,0 +1,133 @@
+<div class="header">
+  <h1 class="orders-header" style="float: left">Orders</h1>
+  <div class="right-header" style="text-align: right">
+    <button class="button" (click)="CreateNewOrder()">Add Order</button>
+    <h3 class="current-date" id="date"></h3>
+  </div>
+</div>
+
+<div class="grid" style="clear: both">
+  <div class="col current-orders">
+    <div class="current orders card">
+      <div class="card-header">
+        <div class="grid">
+          <div class="col header-left">
+            <h2>Current Orders</h2>
+          </div>
+          <div class="col header-right" style="text-align: right">
+            <label for="current-sort">Sort By:</label>
+            <select name="current-sort" id="current-sort">
+              <option value="due-date">Due Date</option>
+              <option value="order-number">Order Number</option>
+              <option value="description">Description</option>
+              <option value="stock-level">Stock Level</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordered" id="current-table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Order Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Stock Level</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Delete?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let order of orders">
+            <tr *ngIf="order.dueDate!.isAfter(today, 'day')">
+              <!--YOU CAN'T JUST SORT BY DAY OF MONTH YOU IDIOT-->
+              <td scope="row">{{ order.orderNum }}</td>
+              <!--WHAT, IS 31ST OF JANUARY LATER THAN 1ST DECEMBER NOW??-->
+              <td>{{ order.orderDescription }}</td>
+              <td>UNAVAILABLE</td>
+              <td>{{ order.dueDate!.format('DD-MMM-YY') }}</td>
+              <td><button type="button" class="btn-close" (click)="delete(order.id)"></button></td>
+            </tr>
+          </ng-container>
+          {{
+            this.initialisePage()
+          }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col past-orders">
+    <div class="past orders card">
+      <div class="card-header">
+        <div class="grid">
+          <div class="col header-left">
+            <h2>Due Today</h2>
+          </div>
+          <div class="col header-right" style="text-align: right">
+            <label for="due-sort">Sort By:</label>
+            <select name="due-sort" id="due-sort">
+              <option value="due-date">Due Date</option>
+              <option value="order-number">Order Number</option>
+              <option value="description">Description</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordered" id="due-table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Order Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Delete?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let order of orders">
+            <tr *ngIf="order.dueDate!.isSame(today, 'day')">
+              <td scope="row">{{ order.orderNum }}</td>
+              <td>{{ order.orderDescription }}</td>
+              <td>{{ order.dueDate!.format('DD-MMM-YY') }}</td>
+              <td><button type="button" class="btn-close" (click)="delete(order.id)"></button></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="current orders card">
+      <div class="card-header">
+        <div class="grid">
+          <div class="col header-left">
+            <h2>Past Orders</h2>
+          </div>
+          <div class="col header-right" style="text-align: right">
+            <label for="past-sort">Sort By:</label>
+            <select name="past-sort" id="past-sort">
+              <option value="completed-date">Completed Date</option>
+              <option value="order-number">Order Number</option>
+              <option value="description">Description</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordered" id="past-table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Order Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Completed Date</th>
+            <th scope="col">Delete?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let order of orders">
+            <tr *ngIf="order.dueDate!.isBefore(today, 'day')">
+              <td scope="row">{{ order.orderNum }}</td>
+              <td>{{ order.orderDescription }}</td>
+              <td>{{ order.dueDate!.format('DD-MMM-YY') }}</td>
+              <td><button type="button" class="btn-close" (click)="delete(order.id)"></button></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

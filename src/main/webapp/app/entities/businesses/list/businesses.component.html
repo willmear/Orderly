@@ -1,0 +1,157 @@
+<div>
+  <h2 id="page-heading" data-cy="BusinessesHeading">
+    <span jhiTranslate="teamprojectApp.businesses.home.title">Businesses</span>
+
+    <!---->
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.businesses.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-businesses"
+        [routerLink]="['/businesses/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.businesses.home.createLabel"> Create a new Businesses </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="businesses?.length === 0">
+    <span jhiTranslate="teamprojectApp.businesses.home.notFound">No Businesses found</span>
+  </div>
+
+  <table>
+    <td style="width: 1250px; padding-right: 50px">
+      <!--List-->
+      <div class="table-responsive table-entities" *ngIf="businesses && businesses.length > 0">
+        <div *ngFor="let business of businesses; trackBy: trackId">
+          <div *ngIf="business && business.name">
+            <div *ngIf="business.name.toLowerCase() == search().toLowerCase() || search() == ''">
+              <div *ngIf="business.type == filter() || filter() == ''">
+                <a [routerLink]="['/businesses', business.id, 'view']">
+                  <h2>{{ business.name }}</h2>
+                </a>
+                <table>
+                  <tr>
+                    <td style="text-align: left; vertical-align: top; padding-right: 50px; width: 750px">
+                      <div [innerHTML]="business.summary"></div>
+                      <table>
+                        <tr>
+                          <td style="text-align: left; padding-top: 50px; padding-right: 50px; width: 500px">
+                            <p>Location: {{ business.location }}</p>
+                          </td>
+                          <td style="text-align: left; padding-top: 50px; padding-right: 50px; width: 500px">
+                            <p>Business Type: {{ business.type }}</p>
+                          </td>
+                          <td style="text-align: left; padding-top: 50px; padding-right: 50px; width: 500px">
+                            <p>Rating: {{ roundRating(business.rating) }}/5</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td style="text-align: left">
+                      <a *ngIf="business.image" (click)="openFile(business.image, business.imageContentType)">
+                        <img
+                          [src]="'data:' + business.imageContentType + ';base64,' + business.image"
+                          style="border: 5px solid black; width: 500px"
+                          alt="businesses image"
+                        />
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+
+                <!--<button type="submit" (click)="delete(business)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span></button
+                >-->
+
+                <br />
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td style="vertical-align: top">
+      <!--Sidebar-->
+      <br />
+      <br />
+      <br />
+      <h3 class="businessSearch">Search:</h3>
+      <input id="searchBar" type="text" />
+      <button class="businessSearch" (click)="search()">Search</button>
+      <button class="businessSearch" (click)="clearSearch()">Clear</button>
+      <br />
+      <br />
+      <br />
+      <h3 class="businessSearch">Business type:</h3>
+      <select id="type" (change)="filter()">
+        <option>Construction</option>
+        <option>Finance</option>
+        <option>Bookshop</option>
+        <option>Decoration</option>
+        <option>Cafe</option>
+        <option>Renovation</option>
+        <option>Tech</option>
+        <option>Other</option>
+      </select>
+      <button class="businessSearch" (click)="clearFilter()">Clear</button>
+      <br />
+      <br />
+      <br />
+      <h3 class="businessSearch">Sort by:</h3>
+      <table>
+        <tr>
+          <!--Name-->
+          <table>
+            <thead>
+              <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+                <th scope="col" jhiSortBy="name">
+                  <span>Name</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </tr>
+        <tr>
+          <!--Location-->
+          <table>
+            <thead>
+              <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+                <th scope="col" jhiSortBy="location">
+                  <span>Location</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </tr>
+        <tr>
+          <!--Rating-->
+          <table>
+            <thead>
+              <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+                <th scope="col" jhiSortBy="rating">
+                  <span>Rating</span>
+                  <fa-icon class="p-1" icon="sort"></fa-icon>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </tr>
+      </table>
+    </td>
+  </table>
+</div>

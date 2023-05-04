@@ -1,0 +1,8 @@
+entity GoogleCalendarAccessToken {
+	encryptedToken String required maxlength(2048)
+    expires Instant required
+}
+
+relationship OneToOne {
+	GoogleCalendarAccessToken{user(login)} to User
+}

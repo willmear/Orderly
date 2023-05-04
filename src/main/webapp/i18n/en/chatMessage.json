@@ -1,0 +1,15 @@
+{
+  "teamprojectApp": {
+    "chatMessage": {
+      "home": {
+        "title": "Chat Messages",
+        "refreshListLabel": "Refresh list",
+        "notFound": "No Chat Messages found"
+      },
+      "detail": {
+        "title": "Chat Message"
+      },
+      "id": "ID"
+    }
+  }
+}

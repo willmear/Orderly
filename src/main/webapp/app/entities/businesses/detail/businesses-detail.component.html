@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="businesses">
+      <h2 data-cy="businessesDetailsHeading">{{ businesses.name }}</h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <table>
+        <td style="text-align: left; vertical-align: top; width: 2000px; padding-right: 50px">
+          <span>{{ businesses.summary }}</span>
+        </td>
+        <td>
+          <a *ngIf="businesses.image" (click)="openFile(businesses.image, businesses.imageContentType)">
+            <img
+              [src]="'data:' + businesses.imageContentType + ';base64,' + businesses.image"
+              style="border: 5px solid black; width: 500px"
+              alt="businesses image"
+            />
+          </a>
+        </td>
+      </table>
+      <table>
+        <td style="text-align: left; padding-top: 25px; padding-right: 20px; width: 200px">
+          <p>Location: {{ businesses.location }}</p>
+        </td>
+        <td style="text-align: left; padding-top: 25px; padding-right: 20px; width: 200px">
+          <p>Business Type: {{ businesses.type }}</p>
+        </td>
+        <td style="text-align: left; padding-top: 25px; padding-right: 20px; width: 200px">
+          <p>Rating: {{ roundRating() }}/5</p>
+        </td>
+      </table>
+      <br />
+      <br />
+      <table>
+        <td style="text-align: left; padding-top: 25px; padding-right: 20px; width: 200px">
+          <button (click)="message()">Message</button>
+        </td>
+        <td style="text-align: left; padding-top: 25px; padding-right: 20px; width: 200px">
+          <span
+            >Rate this business:
+            <select id="rate">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </span>
+
+          <button (click)="updateRating()">Submit</button>
+        </td>
+      </table>
+
+      <br />
+      <br />
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+    </div>
+  </div>
+</div>

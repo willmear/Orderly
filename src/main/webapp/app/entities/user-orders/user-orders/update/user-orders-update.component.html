@@ -1,0 +1,225 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-user-orders-heading"
+        data-cy="UserOrdersCreateUpdateHeading"
+        jhiTranslate="teamprojectApp.userOrdersUserOrders.home.createOrEditLabel"
+      >
+        Create or edit a User Orders
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.orderNum" for="field_orderNum">Order Num</label>
+          <input type="number" class="form-control" name="orderNum" id="field_orderNum" data-cy="orderNum" formControlName="orderNum" />
+          <div *ngIf="editForm.get('orderNum')!.invalid && (editForm.get('orderNum')!.dirty || editForm.get('orderNum')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderNum')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('orderNum')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.orderDescription" for="field_orderDescription"
+            >Order Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="orderDescription"
+            id="field_orderDescription"
+            data-cy="orderDescription"
+            formControlName="orderDescription"
+          />
+          <div
+            *ngIf="
+              editForm.get('orderDescription')!.invalid &&
+              (editForm.get('orderDescription')!.dirty || editForm.get('orderDescription')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderDescription')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.deliveryAddress" for="field_deliveryAddress"
+            >Delivery Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="deliveryAddress"
+            id="field_deliveryAddress"
+            data-cy="deliveryAddress"
+            formControlName="deliveryAddress"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.dateOrdered" for="field_dateOrdered"
+            >Date Ordered</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateOrdered"
+              data-cy="dateOrdered"
+              type="text"
+              class="form-control"
+              name="dateOrdered"
+              ngbDatepicker
+              #dateOrderedDp="ngbDatepicker"
+              formControlName="dateOrdered"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateOrderedDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.dueDate" for="field_dueDate">Due Date</label>
+          <div class="input-group">
+            <input
+              id="field_dueDate"
+              data-cy="dueDate"
+              type="text"
+              class="form-control"
+              name="dueDate"
+              ngbDatepicker
+              #dueDateDp="ngbDatepicker"
+              formControlName="dueDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dueDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('dueDate')!.invalid && (editForm.get('dueDate')!.dirty || editForm.get('dueDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dueDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.customerID" for="field_customerID">Customer ID</label>
+          <input
+            type="number"
+            class="form-control"
+            name="customerID"
+            id="field_customerID"
+            data-cy="customerID"
+            formControlName="customerID"
+          />
+          <div *ngIf="editForm.get('customerID')!.invalid && (editForm.get('customerID')!.dirty || editForm.get('customerID')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('customerID')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('customerID')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.productionTime" for="field_productionTime"
+            >Production Time</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="productionTime"
+            id="field_productionTime"
+            data-cy="productionTime"
+            formControlName="productionTime"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.productionCost" for="field_productionCost"
+            >Production Cost</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="productionCost"
+            id="field_productionCost"
+            data-cy="productionCost"
+            formControlName="productionCost"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.price" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+          <div *ngIf="editForm.get('price')!.invalid && (editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('price')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('price')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.userOrdersUserOrders.user" for="field_user">User</label>
+          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user" [compareWith]="compareUser">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.login }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

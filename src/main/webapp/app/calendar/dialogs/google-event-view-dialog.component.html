@@ -1,0 +1,126 @@
+<div *ngIf="googleEvent">
+  <div class="modal-header">
+    <h4 class="modal-title" jhiTranslate="google.eventModal.title" [translateValues]="{ name: googleEvent.summary }">
+      Viewing Event: {{ googleEvent.summary }}
+    </h4>
+    <button aria-label="Exit" type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></button>
+  </div>
+
+  <div class="modal-body">
+    <small jhiTranslate="google.eventModal.account" [translateValues]="{ account: googleAccount }">
+      From account: {{ googleAccount }}</small
+    >
+    <jhi-alert-error></jhi-alert-error>
+
+    <div class="modal-body">
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.name" for="field_name">Name</label>
+        <input
+          aria-label="Name of event"
+          type="text"
+          class="form-control"
+          name="name"
+          id="field_name"
+          [ngModel]="googleEvent.summary"
+          [readonly]="true"
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.description" for="field_description">Description</label>
+        <input
+          aria-label="Description of event"
+          type="text"
+          class="form-control"
+          name="description"
+          id="field_description"
+          data-cy="description"
+          [ngModel]="googleEvent.description"
+          [readonly]="true"
+        />
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.start" for="field_start">Start</label>
+        <div class="d-flex">
+          <input
+            aria-label="Start date and time"
+            *ngIf="!allDay"
+            id="field_start"
+            data-cy="start"
+            type="datetime-local"
+            class="form-control"
+            name="start"
+            placeholder="YYYY-MM-DD HH:mm"
+            [ngModel]="start"
+            [readonly]="true"
+          />
+          <input
+            id="field_start_date"
+            type="date"
+            class="form-control"
+            *ngIf="allDay"
+            [(ngModel)]="end"
+            [ngModelOptions]="{ standalone: true }"
+            [readonly]="true"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.end" for="field_end">End</label>
+        <div class="d-flex">
+          <input
+            aria-label="End date and time"
+            *ngIf="!allDay"
+            id="field_end"
+            data-cy="end"
+            type="datetime-local"
+            class="form-control"
+            name="end"
+            placeholder="YYYY-MM-DD HH:mm"
+            [ngModel]="end"
+            [readonly]="true"
+          />
+          <input
+            id="field_end_date"
+            type="date"
+            class="form-control"
+            *ngIf="allDay"
+            [(ngModel)]="start"
+            [ngModelOptions]="{ standalone: true }"
+            [readonly]="true"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.location" for="field_location">Location</label>
+        <input
+          aria-label="Location"
+          type="text"
+          class="form-control"
+          name="location"
+          id="field_location"
+          data-cy="location"
+          [ngModel]="googleEvent.location"
+          [readonly]="true"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      aria-label="View event in Google Calendar"
+      type="button"
+      id="view-event"
+      class="btn btn-primary"
+      (click)="redirectToGoogleEvent()"
+    >
+      <fa-icon icon="up-right-from-square"></fa-icon>&nbsp;<span jhiTranslate="google.eventModal.redirect"
+        >View event in Google Calendar</span
+      >
+    </button>
+  </div>
+</div>

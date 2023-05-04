@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-calendar-event-heading"
+        data-cy="CalendarEventCreateUpdateHeading"
+        jhiTranslate="teamprojectApp.calendarEvent.home.createOrEditLabel"
+      >
+        Create or edit a Calendar Event
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.start" for="field_start">Start</label>
+          <div class="d-flex">
+            <input
+              *ngIf="!allDay"
+              id="field_start"
+              data-cy="start"
+              type="datetime-local"
+              class="form-control"
+              name="start"
+              formControlName="start"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+            <input type="date" class="form-control" *ngIf="allDay" [(ngModel)]="allDayStartDate" [ngModelOptions] = "{standalone: true}" (ngModelChange)="updateAllDayStart()">
+          </div>
+          <div *ngIf="editForm.get('start')!.invalid && (editForm.get('start')!.dirty || editForm.get('start')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('start')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('start')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('start')?.errors?.endDateInvalid"
+              jhiTranslate="teamprojectApp.calendarEvent.validation.startDate"
+            >
+              The start date must be before the end date
+            </small>
+          </div>
+        </div>
+
+        <div id="allDay" class="mb-3">
+          <input type="checkbox" [(ngModel)]="allDay" [ngModelOptions] = "{standalone: true}" (ngModelChange)="toggleAllDay()"> All-day event
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.end" for="field_end">End</label>
+          <div class="d-flex">
+            <input
+              *ngIf="!allDay"
+              id="field_end"
+              data-cy="end"
+              type="datetime-local"
+              class="form-control"
+              name="end"
+              formControlName="end"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+            <input id="field_end_date" type="date" class="form-control" *ngIf="allDay" [(ngModel)]="allDayEndDate" [ngModelOptions] = "{standalone: true}" (ngModelChange)="updateAllDayEnd()">
+          </div>
+          <div *ngIf="editForm.get('end')!.invalid">
+            <small class="form-text text-danger" *ngIf="editForm.get('end')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('end')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('end')?.errors?.endDateInvalid"
+              jhiTranslate="teamprojectApp.calendarEvent.validation.endDate"
+            >
+              The end date must be after the start date
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="teamprojectApp.calendarEvent.location" for="field_location">Location</label>
+          <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

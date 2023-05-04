@@ -1,0 +1,34 @@
+<form
+  aria-label="Confirm sign out, Are you sure you want to sign out of your Google Account?"
+  *ngIf="googleAccount"
+  name="confirmSignoutForm"
+  (ngSubmit)="confirmSignout()"
+>
+  <div class="modal-header">
+    <h4 class="modal-title" jhiTranslate="google.signout.title">Confirm sign out</h4>
+
+    <button aria-label="Exit" type="button" class="btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></button>
+  </div>
+
+  <div class="modal-body">
+    <jhi-alert-error></jhi-alert-error>
+    <p id="jhi-googleAuth-signout-heading" jhiTranslate="google.signout.heading" [translateValues]="{ acc: googleAccount }">
+      Are you sure you want to sign out of your {{ googleAccount }} Google Account?
+    </p>
+
+    <p id="jhi-googleAuth-signout-body" jhiTranslate="google.signout.body">
+      Events that were created in your Google Calendar will be removed from the calendar, and your Orderly account. They will, however,
+      still remain in your Google Calendar account
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button aria-label="Cancel" type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+      <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+    </button>
+
+    <button aria-label="Sign out" id="jhi-confirm-google-signout" type="submit" class="btn btn-danger">
+      <fa-icon icon="sign-out-alt"></fa-icon>&nbsp;<span jhiTranslate="google.signout.confirm">Sign out</span>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,153 @@
+<div>
+  <h2 id="page-heading" data-cy="UserOrdersHeading">
+    <span jhiTranslate="teamprojectApp.userOrdersUserOrders.home.title">User Orders</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="teamprojectApp.userOrdersUserOrders.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-user-orders"
+        [routerLink]="['/user-orders/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="teamprojectApp.userOrdersUserOrders.home.createLabel"> Create a new User Orders </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="userOrders?.length === 0">
+    <span jhiTranslate="teamprojectApp.userOrdersUserOrders.home.notFound">No User Orders found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="userOrders && userOrders.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderNum">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.orderNum">Order Num</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orderDescription">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.orderDescription">Order Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deliveryAddress">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.deliveryAddress">Delivery Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateOrdered">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.dateOrdered">Date Ordered</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dueDate">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.dueDate">Due Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="customerID">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.customerID">Customer ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="productionTime">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.productionTime">Production Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="productionCost">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.productionCost">Production Cost</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="price">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.price">Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="user.login">
+            <div class="d-flex">
+              <span jhiTranslate="teamprojectApp.userOrdersUserOrders.user">User</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userOrders of userOrders; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-orders', userOrders.id, 'view']">{{ userOrders.id }}</a>
+          </td>
+          <td>{{ userOrders.orderNum }}</td>
+          <td>{{ userOrders.orderDescription }}</td>
+          <td>{{ userOrders.deliveryAddress }}</td>
+          <td>{{ userOrders.dateOrdered | formatMediumDate }}</td>
+          <td>{{ userOrders.dueDate | formatMediumDate }}</td>
+          <td>{{ userOrders.customerID }}</td>
+          <td>{{ userOrders.productionTime }}</td>
+          <td>{{ userOrders.productionCost }}</td>
+          <td>{{ userOrders.price }}</td>
+          <td>
+            {{ userOrders.user?.login }}
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/user-orders', userOrders.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/user-orders', userOrders.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(userOrders)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

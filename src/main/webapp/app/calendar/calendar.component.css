@@ -1,0 +1,154 @@
+/* calendar.component.css */
+
+.switch {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch input[type="checkbox"]:focus + .slider::before,
+.switch label:focus::before {
+  outline-offset: 5px !important;
+  border: 4px solid !important;
+  border-radius: 0 !important;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 34px;
+  min-width: 60px;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider-customEvent {
+  background-color: #A64C4C;
+}
+
+input:focus + .slider-customEvent {
+  box-shadow: 0 0 1px #A64C4C;
+}
+
+input:checked + .slider-order {
+  background-color: #FFD580;
+}
+
+input:focus + .slider-order {
+  box-shadow: 0 0 1px #FFD580;
+}
+
+input:checked + .slider-googleEvent {
+  background-color: #628D57;
+}
+
+input:focus + .slider-googleEvent {
+  box-shadow: 0 0 1px #628D57;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.ev-count-box {
+  display: table;
+  width: 200px;
+  height: 40px;
+  margin: 12px;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+.ev-box-custom {
+  background-color: #A64C4C;
+  color: white;
+}
+
+.ev-box-orders {
+  background-color: #FFD580;
+  color: black;
+}
+
+.ev-box-google {
+  background-color: #628D57;
+  color: white;
+}
+
+.ev-count-num {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 20px;
+  font-size: 2em;
+}
+
+.ev-count-desc {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.toggle-container {
+  display: table;
+  margin: auto;
+  width: 60%;
+}
+
+.toggle-label {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+.controls-container {
+  text-align: center;
+}
+
+.control-button {
+  margin: 10px;
+}
+
+.control-panel {
+  margin: auto;
+}
+
+.control-panel-summary {
+  margin: 12px auto auto;
+}

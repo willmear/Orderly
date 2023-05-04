@@ -1,0 +1,43 @@
+<div class="header">
+  <h1 class="inventory-header" style="float: left">Inventory</h1>
+  <div class="right-header" style="text-align: right">
+    <button class="button" (click)="AddItem()">Add Item</button>
+  </div>
+</div>
+
+<div class="grid" style="clear: both">
+  <div class="col inventory">
+    <div class="card-header">
+      <div class="grid">
+        <div class="col header-left">
+          <h2></h2>
+        </div>
+        <div class="col header-right" style="text-align: right">
+          <label for="current-sort">Sort By:</label>
+          <select name="current-sort" id="current-sort">
+            <option value="order-number">Quantity</option>
+            <option value="description">Alphabetically</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <table class="table table-bordered" id="current-table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Stock Level</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of items">
+          <td scope="row">{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.status }}</td>
+          <td><button type="button" class="btn-close" (click)="delete(item.id)"></button></td>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

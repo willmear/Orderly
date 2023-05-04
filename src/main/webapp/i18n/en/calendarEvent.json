@@ -1,0 +1,41 @@
+{
+  "teamprojectApp": {
+    "calendarEvent": {
+      "home": {
+        "title": "Calendar Events",
+        "description": "As an administrator, you can manage the calendar events of all Orderly users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Calendar Event",
+        "createOrEditLabel": "Create or edit a Calendar Event",
+        "notFound": "No Calendar Events found"
+      },
+      "created": "Event \"{{ param }}\" has been successfully created",
+      "updated": "Event \"{{ param }}\" has been successfully updated",
+      "deleted": "Event \"{{ param }}\" has been successfully deleted",
+      "delete": {
+        "question": "Are you sure you want to delete Calendar Event \"{{ name }}\"?",
+        "warning": "This action cannot be undone"
+      },
+      "detail": {
+        "title": "Calendar Event"
+      },
+      "view": {
+        "title": "Viewing Event: {{ name }}",
+        "editTitle": "Editing Event: {{ name }}",
+        "undoChanges": "Undo changes",
+        "exit": "Exit without saving"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "start": "Start",
+      "end": "End",
+      "location": "Location",
+      "user": "User",
+      "validation": {
+        "endDate": "The end date must be after the start date",
+        "startDate": "The start date must be before the end date"
+      }
+    }
+  }
+}
