@@ -4,8 +4,8 @@
 ](https://orderlyapp.live/)
 
 Demo Account:
-Username: demo
-Password: c9N93&%3dbkp
+- Username: demo
+- Password: c9N93&%3dbkp
 
 ## Developed by:
 
